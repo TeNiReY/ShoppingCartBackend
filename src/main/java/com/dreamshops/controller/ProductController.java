@@ -113,7 +113,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/by-brand")
-    public ResponseEntity<ApiResponse> getProductByBrand(@PathVariable String brand) {
+    public ResponseEntity<ApiResponse> getProductByBrand(@RequestParam String brand) {
         try {
             List<Product> products = productService.getProductsByBrand(brand);
             if (products.isEmpty()) {
@@ -138,7 +138,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/product/{category}/all/products")
+    @GetMapping("/product/count/by-brand/and-name")
     public ResponseEntity<ApiResponse> countProductsByBrandAndName(@RequestParam String brand, @RequestParam String name) {
        try {
            var productCount = productService.countProductsByBrandAndName(brand, name);

@@ -5,7 +5,6 @@ import com.dreamshops.exceptions.ResourceNotFoundException;
 import com.dreamshops.model.Category;
 import com.dreamshops.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,7 +34,7 @@ public class CategoryService implements ICategoryService {
     @Override
     public Category addCategory(Category category) {
         return Optional.of(category)
-                .filter(c -> !categoryRepository.existByName(c.getName()))
+                .filter(c -> !categoryRepository.existsByName(c.getName()))
                 .map(categoryRepository::save)
                 .orElseThrow(() -> new AlreadyExistException(category.getName() + " already exists"));
     }
