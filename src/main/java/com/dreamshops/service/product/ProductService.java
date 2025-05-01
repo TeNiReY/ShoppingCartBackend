@@ -1,6 +1,7 @@
 package com.dreamshops.service.product;
 
 import com.dreamshops.exceptions.ProductNotFoundException;
+import com.dreamshops.exceptions.ResourceNotFoundException;
 import com.dreamshops.model.Category;
 import com.dreamshops.model.Product;
 import com.dreamshops.repository.CategoryRepository;
@@ -50,14 +51,14 @@ public class ProductService implements IProductService {
     @Override
     public Product getProductById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("Product not found!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found!"));
     }
 
     @Override
     public void deleteProductById(Long id) {
         productRepository.findById(id)
                 .ifPresentOrElse(productRepository::delete,
-                        () -> {throw new ProductNotFoundException("Product not found!");}); // if product was founded, then delete
+                        () -> {throw new ResourceNotFoundException("Product not found!");}); // if product was founded, then delete
     }
 
     @Override
@@ -65,7 +66,7 @@ public class ProductService implements IProductService {
         return productRepository.findById(productId)
                 .map(existingProduct -> updateExistingProduct(existingProduct, request))
                 .map(productRepository::save)
-                .orElseThrow(() -> new ProductNotFoundException("Product not found!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found!"));
     }
 
     private Product updateExistingProduct(Product existingProduct, ProductUpdateRequest request) {
@@ -86,7 +87,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> getProductsByCategory(Long category) {
+    public List<Product> getProductsByCategory(String category) {
         return productRepository.findByCategoryName(category);
     }
 
