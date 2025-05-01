@@ -21,7 +21,7 @@ public class Image {
     private String fileType;
 
     @Lob // показывает что хранятся большие обьемы данных
-    private Blob blob;
+    private Blob image;
     private String downloadUrl;
 
     @ManyToOne
