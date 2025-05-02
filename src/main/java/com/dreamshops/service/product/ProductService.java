@@ -1,6 +1,5 @@
 package com.dreamshops.service.product;
 
-import com.dreamshops.exceptions.ProductNotFoundException;
 import com.dreamshops.exceptions.ResourceNotFoundException;
 import com.dreamshops.model.Category;
 import com.dreamshops.model.Product;
@@ -89,6 +88,7 @@ public class ProductService implements IProductService {
     @Override
     public List<Product> getProductsByCategory(String category) {
         return productRepository.findByCategoryName(category);
+
     }
 
     @Override
