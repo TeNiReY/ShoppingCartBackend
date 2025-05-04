@@ -1,5 +1,6 @@
 package com.dreamshops.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,9 +21,9 @@ public class Category {
     private Long id;
     private String name;
 
-
-//    @OneToMany(mappedBy = "category")
-//    private List<Product> products; //cuz 1 category can have many products
+    @JsonIgnore
+    @OneToMany(mappedBy = "category")
+    private List<Product> products; //cuz 1 category can have many products
 
     public Category(String name) {
         this.name = name;
