@@ -18,7 +18,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 public class CartController {
     private final ICartService cartService;
 
-    @GetMapping("/{cartId}/my-cart")
+    @GetMapping("/{cartId}/my-cart") //TODO: на данный момент если у продукта есть изображение то корзина не показывается
     public ResponseEntity<ApiResponse> getCart(@PathVariable Long cartId) {
         try {
             Cart cart = cartService.getCart(cartId);
